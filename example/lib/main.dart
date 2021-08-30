@@ -1,3 +1,4 @@
+import 'package:fade_auto_complet/data/core/parser_controller.dart';
 import 'package:fade_auto_complet/fade_auto_complet.dart';
 import 'package:fade_auto_complet/fade_auto_complet_future.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +30,6 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final myController = TextEditingController();
-  final myFutureController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,20 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     borderRadius: BorderRadius.circular(20),
                   ),
                 ),
-                keys: [
-                  'teste',
-                  'teste teste',
-                  'Teste agua',
-                  'Teste super',
-                  'teste almeida',
-                  'experiente',
-                  'experiente fluxo',
-                  'Porto',
-                  'Porto pedra',
-                  'Porto Pedra',
-                  'Porto Pedra Pereira Agua',
-                  'Preenchimento automatico de texto com fade como principal função'
-                ],
+                keys: ['teste', 'teste teste', 'Teste agua', 'Teste super', 'teste almeida', 'experiente', 'experiente fluxo', 'Porto', 'Porto pedra', 'Porto Pedra', 'Porto Pedra Pereira Agua', 'Preenchimento automatico de texto com fade como principal função'],
               ),
             ),
             SizedBox(
@@ -79,7 +66,6 @@ class _MyHomePageState extends State<MyHomePage> {
               width: 300,
               height: 50,
               child: FadeAutoCompleteFuture(
-                controller: myFutureController,
                 decoration: InputDecoration(
                   hintText: 'List Future',
                   border: OutlineInputBorder(
@@ -92,7 +78,10 @@ class _MyHomePageState extends State<MyHomePage> {
                     borderRadius: BorderRadius.circular(20),
                   ),
                 ),
-                getKeys: getKeys,
+                getKeys: () => Parser.parseDataModel(url: 'https://jsonplaceholder.typicode.com/users/1/posts', key: 'id', value: 'title'),
+                onSubmitted: (choosen) {
+                  print(choosen.toString());
+                },
               ),
             ),
           ],
@@ -100,24 +89,5 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       // This trailing comma makes auto-formatting nicer for build methods.
     );
-  }
-
-  Future<List<String>> getKeys() async {
-    return await Future.delayed(Duration(seconds: 3), () {
-      return [
-        'teste',
-        'teste teste',
-        'Teste agua',
-        'Teste super',
-        'teste almeida',
-        'experiente',
-        'experiente fluxo',
-        'Porto',
-        'Porto pedra',
-        'Porto Pedra',
-        'Porto Pedra Pereira Agua',
-        'Preenchimento automatico de texto com fade como principal função'
-      ];
-    });
   }
 }
