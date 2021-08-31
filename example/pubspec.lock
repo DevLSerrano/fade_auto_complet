@@ -43,13 +43,27 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.15.0"
-  dio:
+  cupertino_icons:
     dependency: "direct main"
+    description:
+      name: cupertino_icons
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.3"
+  dio:
+    dependency: transitive
     description:
       name: dio
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.0"
+  fade_auto_complet:
+    dependency: "direct main"
+    description:
+      path: ".."
+      relative: true
+    source: path
+    version: "0.0.1"
   fake_async:
     dependency: transitive
     description:
